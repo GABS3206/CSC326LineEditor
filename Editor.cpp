@@ -7,6 +7,22 @@
 
 using namespace std;
 
+
+
+void CursorInit(Position coordinate) { // function that gets the cursor placement and connects it to each coordinate
+
+	HANDLE hStdout;
+	COORD coord;
+
+	hStdout = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	coord.X = coordinate.getX(); // gets the x coordinate of the cursor
+
+	coord.Y = coordinate.getY(); // gets the y coordinate of the cursor 
+
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+}
+
 Editor::Editor() // default editor constructor
 {
 
@@ -19,14 +35,14 @@ Editor::Editor(string file) // editor constructor that reads the text file
 	fileName = file; // sets filename to the file parameter
 	myFile.open(fileName); // defines variable for each line in the text file
 	//opens up the file called filename
+	int i = 1;
+
 	while (!myFile.eof()) // gets the text file and each line in the file
 	{
-		getline(myFile, tempText);    // for loop that continues to get each line in the file until there are no more lines
-		for (int i = 0; i <= tempText.length(); i++) 
-		{
-			allText.insert(i + 1, tempText[i]);
-		}
-		allText.insert(tempText.length() + 1, '\n');
+		getline(myFile, Line);    // for loop that continues to get each line in the file until there are no more lines
+		
+		allText.insert(i, Line);
+		i++;
 	}
 
 	myFile.close();
@@ -37,8 +53,9 @@ void Editor::DisplayLines() // display lines function that displays the info fro
 {
 	for (int i = 1; i <= allText.getLength(); i++) // gets all of the data from the text file
 	{
-		cout << allText.getEntry(i); // prints out data from text
+		cout << allText.getEntry(i) << endl; // prints out data from text
 	}
+	CursorInit(pos);
 }
 
 void Editor::run()
@@ -66,7 +83,7 @@ void Editor::run()
 		Save(); // user enters w to save the proress. save function will save the contents of the file
 		run(); // keeps the program running
 		break;
-	case'j':
+	/*case'j':
 		moveDown(); // move down cursor function
 		break;
 	case 'k':
@@ -80,7 +97,7 @@ void Editor::run()
 		break;
 	case 'dd':
 		DeleteCurrentLine();
-		break;
+		break;*/
 	default:
 		WriteChar(command); // default case if the user enters anything else other than the commands above
 		run();
@@ -89,12 +106,18 @@ void Editor::run()
 
 void Editor::WriteChar(char cmd) // function that allows user to edit the file 
 {
-	allText.insert(allText.getLength(), cmd); // calls the insert function and gets the length of the string 
+	//allText.insert(allText.getLength(), cmd); // calls the insert function and gets the length of the string 
 }
 
 void Editor::DeleteChar() // function that allows user to delete chars in the file
 {
-	allText.remove(allText.getLength());  // calls the delete function and gets the length of the string 
+	  // calls the delete function and gets the length of the string 
+	//capture line at the current pos
+	// call get entry
+	// add one to the y value 
+	// erase where the user is at the x pos
+	// x pos starts at 0
+	// call get entry and put into string, then erase current position where user is, then replace it back into the same node, then call display lines to see updated file
 	// deletes a single char
 }
 

@@ -25,11 +25,12 @@ public:
 	bool Quit(); // function that quits the program
 	void DeleteCurrentLine(); // function that deletes the current line
 private:
-	string fileName, tempText; // filename variable
+	string fileName, Line; // filename variable
 	char command; // command variable that is the variable used in the switch statement
 	bool isRunning = true; // bool that checks if the code is running
-	LinkedList<char> allText; // linked list definition that connects to the allText 
+	LinkedList<string> allText; // linked list definition that connects to the allText 
 	fstream myFile; // variable for the file
+	Position pos;
 };
 
 #endif // !EDITOR_H

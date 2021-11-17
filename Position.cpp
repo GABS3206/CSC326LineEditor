@@ -1,7 +1,10 @@
 #include <iostream>
 #include "Position.h"
 
-Position::Position() {}
+Position::Position() {
+	coord.X = 0;
+	coord.Y = 0;
+}
 //default constructor
 
 

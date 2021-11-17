@@ -16,7 +16,7 @@ public:
 	void moveDown(); // move down cursor function
 	void moveUp(); // move up cursor function
 	void moveRight(); // move right cursor function
-	void moveLeft(); // move left cursor function
+	void moveLeft(); // move left cursor functionzzc
 private:
 	COORD coord;
 };
