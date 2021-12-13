@@ -1,15 +1,12 @@
 #include <iostream>
 #include "Position.h"
 
-Position::Position() {
+Position::Position() { //default constructor
 	coord.X = 0;
 	coord.Y = 0;
 }
-//default constructor
-
 
 Position::Position(int x, int y) //constructor that sends parameters x and y of type int to setCursorPos fnc
-
 {
 	setCursorPos(x, y);
 }
@@ -24,14 +21,18 @@ void Position::setCursorPos(int x, int y) //sets users cursor coord.X to x and c
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
 
-void Position::setX(int x)  //sets the x coordinate 
+void Position::moveCursor(int x, int y) // function that moves the cursor around
+{
+	coord.X += x; // increases the x coordinate by 1
+	coord.Y += y; // increases the y coordinate by 1
+}
 
+void Position::setX(int x) //sets the x coordinate 
 {
 	coord.X = x;
 }
 
-void Position::setY(int y) //sets the y coordinate
-
+void Position::setY(int y) //sets the y coordinate 
 {
 	coord.Y = y;
 }
@@ -39,29 +40,11 @@ void Position::setY(int y) //sets the y coordinate
 int Position::getX() //returns the x coordinate
 
 {
-	return coord.X; ; //defines coordinates of a character cell, top left of console is (0,0)
-
+	return coord.X;
 }
 
-int Position::getY() //returns the y coordinate 
+int Position::getY() //returns the y coordinate
 
-{
-	return coord.Y; ; //defines coordinates of a character cell, top left of console is (0,0)
-
-}
-
-void Position::moveDown() { // move down function definition
-	
-}
-
-void Position::moveUp() { // move up function definition
-
-}
-
-void Position::moveRight() { // move right function definition
-
-}
-
-void Position::moveLeft() { // move left function definition 
-
+{ 
+	return coord.Y;
 }

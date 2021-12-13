@@ -10,14 +10,13 @@ using namespace std;
 
 //Initialize cursor 
 
-
 int main()
 {
-	Position pos(0, 0); //sets the coordinate position to (0,0)
+	string text; 
 	Editor ed("input.txt"); // passes the text file into the editor class
 
-	
+
 	ed.run(); // calls the program to run the run function from the editor implementation file
 
-
+	//(int arg c, char* agr v []);
 }
